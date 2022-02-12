@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/my_styles.css">
+        {% load static %}
+        <script src="{% static 'index.js' %}"></script>
+    </head>
+    <body>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-11 col-sm-11">
+                  {% if user.is_authenticated %}
+                  <h1>Hi {{ user.username }}!</h1>  <p class="p_mine"><a href="{% url 'logout' %}">logout</a></p>
+                  <div>
+                      {% else %}
+                      <p>You are not logged in</p>
+                      <a href="{% url 'login' %}">login</a>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+            <div class="row">
+              <div class="col-lg-4 col-sm-12">
+                  <h2>Click Folders to view contents.</h2>
+                  <div>
+                    <table style="width:100%">
+                      {% for folder in folders %}
+                        <tr>
+                          <td><a href="{% url 'filter' folder.name %}">{{ folder.name }} ( {{ folder.size }} )</a></td>
+                          <td><a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Deletes folder and all its items." href="{% url 'delete_folder' folder.id %}">Delete</a></td>
+                        </tr>
+                      {% empty %}
+                          <p>No Folders</p>
+                      {% endfor %}
+                    </table>
+                  </div>
+
+                  <form action="{% url 'add_folder' %}" method="post">
+                      {% csrf_token %}
+                      <h2>Add a Folder</h2>
+                      <input type="text" name="new_folder" id="new_folder" autocomplete="off" autofocus placeholder="New Folder" type="text">
+                      <button action="{% url 'add_folder' %}" name="add_folder" id="add_folder" method="post">Add</button>
+                  </form>
+              </div>
+
+              <div class="col-lg-7 col-sm-12">
+                <p><a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Click to add a new item." href="{% url 'add_place' %}">Add a URL or Device</a></p>
+                <div class="search">
+                    <form action="{% url 'filter' 'search_not_folder' %}" method="post">
+                      {% csrf_token %}
+                        <h2>Search</h2>
+                        <input type="text" name="search" id="search" placeholder="search">
+                        <button class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Search by name or location." action="{% url 'filter' 'search_not_folder' %}" id="submit_search" name="submit_search" method="post">Search</button>
+                    </form>
+
+                </div>
+
+                <h2>Places</h2>
+                <div>
+                  <table style="width:100%">
+                    {% for item in items %}
+                      <tr>
+                        <td>{{item.name}}</td>
+                        <td>{{item.location}}</td>
+                        <td><a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Delete this item." href="{% url 'delete' item.id %}">   Delete   </a></td>
+                        <td><a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Edit this item." href="{% url 'edit_place' item.id %}">Edit</a></td>
+                        <td><a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="View this item." href="{% url 'view_place' item.id %}">View</a></td>
+                      </tr>
+
+                  {% empty %}
+                      <p>Empty Folder</p>
+                  {% endfor %}
+                  </table>
+                </div>
+              </div>
+          </div>
+      </div>
+    </body>
+</html>

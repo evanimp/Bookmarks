@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/my_styles.css">
+        {% load static %}
+        <script src="{% static 'view.js' %}"></script>
+    </head>
+    <body>
+
+      <div>
+        <h2>Name: {{ values.name }}</h2>
+        <h2 id="l_loc">Location</h2><input type="text" id="d_loc" value="{{ values.location }}" visibility="hidden"> </input>
+        <h2 id="l_un">Username</h2><input type="text" id="d_un" value="{{ values.un }}" visibility="hidden"> </input>
+        <h2 id="l_pw">Password</h2><input type="password" id="d_pw" value="{{ values.pw }}" visibility="hidden"> </input>
+      </div>
+      <a class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Back to main page" href="{% url 'index' %}">Home</a>
+    </body>
+</html>

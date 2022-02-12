@@ -1,0 +1,157 @@
+/* Tooltip container */
+.tooltip {
+ position: relative;
+ display: inline-block;
+ border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+ visibility: hidden;
+ width: 120px;
+ background-color: #555;
+ color: #fff;
+ text-align: center;
+ padding: 5px 0;
+ border-radius: 6px;
+
+ /* Position the tooltip text */
+ position: absolute;
+ z-index: 1;
+ bottom: 125%;
+ left: 50%;
+ margin-left: -60px;
+
+ /* Fade in tooltip */
+ opacity: 0;
+ transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+ content: "";
+ position: absolute;
+ top: 100%;
+ left: 50%;
+ margin-left: -5px;
+ border-width: 5px;
+ border-style: solid;
+ border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+ visibility: visible;
+ opacity: 1;
+}
+
+h1 {
+    color: dark-green;
+    text-align: left;
+}
+
+h2 {
+    color: dark-green;
+    text-align: left;
+}
+
+h3 {
+    color: green;
+    text-align: left;
+}
+
+h4 {
+    color: green;
+    text-align: left;
+}
+
+li {
+    color: green;
+}
+
+p {
+    color: dark-green;
+    font-size: large;
+}
+
+.p_mine {
+    color: green;
+}
+
+p::selection {
+    color: red;
+    background-color: yellow;
+}
+
+div.search {
+  border: 1px solid black;
+}
+
+div.book {
+  background-color: brown;
+}
+
+div.section {
+  visibility: hidden;
+  border: 1px solid black;
+}
+
+div.container {
+  background-image: url("/static/vault2.jpg");
+}
+
+div {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+
+}
+
+.row > div {
+    padding: 20px;
+    background-color: teal;
+    border: 2px solid black;
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    background-color: lightgray;
+}
+
+a{
+  color: Maroon;
+}
+
+.pg {
+    color: green;
+    font-size 22;
+}
+
+input:default {
+  box-shadow: 0 0 1px 1px red;
+}
+
+button: {
+  disabled: true;
+}
+
+body {
+ background-image: url("/static/vault.jpg");
+
+}
